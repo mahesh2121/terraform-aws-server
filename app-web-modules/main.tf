@@ -1,7 +1,7 @@
 provider "aws" {
 }
 module "server" {
-  source                 = "app.terraform.io/YOUR_ORG_NAME/server/aws"
+  source                 = "app.terraform.io/Maheshcloudx/server/aws"
   ami                    = var.ami
   subnet_id              = var.subnet_id
   vpc_security_group_ids = var.vpc_security_group_ids
