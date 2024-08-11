@@ -16,7 +16,7 @@ pipeline {
     stages {
             stage('TerraformInit'){
             steps {
-                dir('terraform-aws-server/'){
+                dir('terraform-aws-server'){
                     sh "ls -l" // List directory contents for debugging
                     sh "git branch > branch.txt"
                     sh "pwd"                 
@@ -29,7 +29,7 @@ pipeline {
 
         stage('TerraformFormat'){
             steps {
-                dir('terraform-aws-server/'){
+                dir('terraform-aws-server'){
                     sh "terraform fmt -list=true -write=false -diff=true -check=true"
                 }
             }
@@ -45,7 +45,7 @@ pipeline {
 
         stage('TerraformPlan'){
             steps {
-                dir('terraform-aws-server/'){
+                dir('terraform-aws-server'){
                     script {
                         try {
                             sh "terraform workspace new ${params.WORKSPACE}"
