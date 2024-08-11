@@ -18,6 +18,7 @@ pipeline {
             steps {
                 dir('terraform-aws-server/'){
                     sh "ls -l" // List directory contents for debugging
+                    sh "git branch > branch.txt"
                     sh "pwd"                 
                     sh "terraform init -input=false"
                     sh "echo \$PWD"
