@@ -17,6 +17,8 @@ pipeline {
             stage('TerraformInit'){
             steps {
                 dir('terraform-aws-server/'){
+                    sh "ls -l" // List directory contents for debugging
+                    sh "pwd"                 
                     sh "terraform init -input=false"
                     sh "echo \$PWD"
                     sh "whoami"
@@ -42,7 +44,7 @@ pipeline {
 
         stage('TerraformPlan'){
             steps {
-                dir('terraform-aws-server'){
+                dir('terraform-aws-server/'){
                     script {
                         try {
                             sh "terraform workspace new ${params.WORKSPACE}"
