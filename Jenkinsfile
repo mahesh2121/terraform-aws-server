@@ -34,7 +34,7 @@ pipeline {
 
         stage('TerraformValidate'){
             steps {
-                dir('terraform-aws-server/'){
+                dir('terraform-aws-server'){
                     sh "terraform validate"
                 }
             }
@@ -42,7 +42,7 @@ pipeline {
 
         stage('TerraformPlan'){
             steps {
-                dir('terraform-aws-server/'){
+                dir('terraform-aws-server'){
                     script {
                         try {
                             sh "terraform workspace new ${params.WORKSPACE}"
@@ -69,7 +69,7 @@ pipeline {
                          currentBuild.result = 'UNSTABLE'
                     }
                     if(apply){
-                        dir('terraform-aws-server/'){
+                        dir('terraform-aws-server'){
                             unstash "terraform-plan"
                             sh 'terraform apply terraform.tfplan' 
                         }
