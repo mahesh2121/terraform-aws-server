@@ -1,3 +1,4 @@
+
 terraform {
   required_providers {
     aws = {
@@ -5,8 +6,7 @@ terraform {
     }
   }
 }
-
-resource "aws_instance" "" {
+resource "aws_instance" "Pipeline-machine" {
   ami           = var.ami
   instance_type = var.instance_type
 
