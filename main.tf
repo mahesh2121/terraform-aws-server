@@ -1,10 +1,21 @@
-provider "aws" {
+
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+  }
 }
-module "server" {
-  source                 = "app.terraform.io/Maheshcloudx/server/aws"
-  ami                    = var.ami
-  subnet_id              = var.subnet_id
-  vpc_security_group_ids = var.vpc_security_group_ids
-  identity               = var.identity
-  web_count              = var.web_count
+resource "aws_instance" "Pipeline-machine" {
+  ami           = var.ami
+  instance_type = var.instance_type
+
+  network_interface {
+    network_interface_id = var.network_interface_id
+    device_index         = 0
+  }
+
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
 }
